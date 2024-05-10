@@ -1,0 +1,38 @@
+<!-- views/chat_gpt_views.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record id="view_chat_gpt_form" model="ir.ui.view">
+            <field name="name">chat.gpt.form</field>
+            <field name="model">chat.gpt</field>
+            <field name="arch" type="xml">
+                <form string="chat_gpt_module">
+                    <sheet>
+                        <group>
+                            <field name="user_input"/>
+                            <field name="response"/>
+                        </group>
+                        <group>
+                            <button name="button_send_input" string="Send Input" type="object" class="oe_highlight" />
+							<button name="button_clear" string="Clear" type="object" class="oe_highlight" />
+						</group>
+                        <notebook>
+							<page string="Output">
+								<field name="output" readonly="1" />
+							</page>
+						</notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_chat_gpt" model="ir.actions.act_window">
+            <field name="name">Chat GPT</field>
+            <field name="res_model">chat_gpt</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_chat_gpt" name="Chat GPT" action="action_chat_gpt"/>
+    </data>
+</odoo>

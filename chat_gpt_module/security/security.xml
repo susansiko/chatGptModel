@@ -1,0 +1,23 @@
+<!-- security.xml -->
+
+<odoo>
+    <data>
+        <!-- Grup Tanımlama -->
+        <record id="group_chat_user" model="res.groups">
+            <field name="name">Chat GPT Users</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- İzinler -->
+        <record id="group_chat_user_access" model="ir.rule">
+            <field name="name">Chat GPT User Access</field>
+            <field name="model_id" ref="mchat_gpt"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(6, 0, [ref('group_chat_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+    </data>
+</odoo>
